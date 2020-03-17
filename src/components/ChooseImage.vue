@@ -1,7 +1,8 @@
 <template>
 <div>
     <v-card flat>
-    <v-card-text>image</v-card-text>
+        <v-card-title>Add images on your t-shirts.</v-card-title>
+        <v-card-text>image</v-card-text>
     </v-card>
 </div>
 </template>

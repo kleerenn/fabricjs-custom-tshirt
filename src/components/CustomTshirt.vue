@@ -1,11 +1,10 @@
 <template>
     <div class="main">
-        <div class="title">
+        <div class="title mx-auto">
             <h1>Create your custom t-shirt! 👕 </h1>
-
         </div>
         <div class="container">
-            <div id="tshirt-canvas">
+            <div id="tshirt-canvas" :style="{background: selectColor}">
                 <img id="tshirt-bg" src="../assets/img/bg-tshirt.png"/>
                 <div id="drawingArea" class="drawing-area">
                     <div class="canvas-container">
@@ -28,9 +27,16 @@
                       <v-tab-item
                         v-for="(item, index) in items" :key="index"
                       >
-                          <template v-if="item.name === COLOR"><choose-color></choose-color></template>
-                          <template v-else-if="item.name === IMAGE"><choose-image></choose-image></template>
-                          <template v-else><add-text></add-text></template>
+                          <template v-if="item.name === COLOR">
+                              <choose-color @selectedColor="selectColor = $event"
+                              ></choose-color>
+                          </template>
+                          <template v-else-if="item.name === IMAGE">
+                              <choose-image></choose-image>
+                          </template>
+                          <template v-else>
+                              <add-text></add-text>
+                          </template>
                       </v-tab-item>
                     </v-tabs-items>
 
@@ -61,7 +67,8 @@
                     { name : 'color' },
                     { name: 'image' },
                     { name: 'text' }
-                ]
+                ],
+                selectColor: ''
             }
         },
         component: [
@@ -71,6 +78,8 @@
         ],
         beforeMount() {
              this.canvas = new fabric.Canvas('canvas')
+        },
+        methods: {
         }
     }
 </script>
@@ -82,11 +91,11 @@
         align-items: center;
     }
     .title {
+        display: flex;
         width: 100%;
         height: 100px;
         background: linear-gradient(to right, #7E57C2, #5C6BC0, #42A5F5);
         font-family: 'Lato';
-        text-align: center;
         align-items: center;
     }
     .container {

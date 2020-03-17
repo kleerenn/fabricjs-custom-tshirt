@@ -1,5 +1,7 @@
 <template>
-  <custom-tshirt></custom-tshirt>
+  <v-app>
+    <custom-tshirt></custom-tshirt>
+  </v-app>
 </template>
 
 <script>
